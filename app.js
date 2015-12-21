@@ -28,7 +28,7 @@ app.get('/', function(request, response) {
 		  response.send("Error quering mongo");
 	  }
 	  else {
-		  console.log("Success query mongo");
+		  console.log("Success query mongo " + samples);
 		  response.json(samples);
 	  }	
   });
