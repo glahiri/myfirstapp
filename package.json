@@ -15,7 +15,8 @@
   "license": "MIT",
   "dependencies": {
     "express": "4.13.3",
-    "mongoose": ">=4.1.11"
+    "mongoose": ">=4.1.11",
+    "body-parser": ">=1.14.2"
   },
   "changelog" : [{"0.0.0": "Initial release"}],
   "homepage" : "https://stark-mesa-3118.herokuapp.com"
