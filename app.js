@@ -22,7 +22,8 @@ app.set('port', (process.env.PORT || 5000));
 
 app.get('/', function(request, response) {
   console.log('Request recieved!');
-
+  response.send('Welcome to this app ' + request.body.name);
+/*
   var header = new Sample({
   	header: 'Header created on ' + Date.now()
   });
@@ -42,7 +43,7 @@ app.get('/', function(request, response) {
 		  response.json(samples);
 	  }	
   });
-  
+  */
 });
 
 app.listen(app.get('port'), function() {
