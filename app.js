@@ -15,7 +15,24 @@ app.set('port', (process.env.PORT || 5000));
 
 app.get('/', function(request, response) {
   console.log('Request recieved!');
-  response.send('Welcome to my first app!');
+
+  var sample_schema = new mongoose.Schema({
+	header: String
+  });
+
+  var Sample = mongoose.model('Sample',sample_schema);
+
+  Sample.find({},function(err,samples){
+	  if(err) {
+		  console.log("Error query to mongo " + err);
+		  response.send("Error quering mongo");
+	  }
+	  else {
+		  console.log("Success query mongo");
+		  response.send(samples);
+	  }	
+  });
+  
 });
 
 app.listen(app.get('port'), function() {
