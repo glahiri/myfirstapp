@@ -51,7 +51,7 @@ app.get('/', function(request, response) {
 });
 
 app.get('/user',function(req,res){
-	console.log('request recieved at /user');
+	console.log('request recieved at /user ' + req.body);
 	res.send('Welcome to this app ' + req.body.name);
 });
 
