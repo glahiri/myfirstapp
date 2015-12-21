@@ -1,0 +1,19 @@
+{
+  "name": "hello-world",
+  "version": "0.0.0",
+  "description": "Basic application with github and heroku",
+  "main": "app.js",
+  "engines" : { 
+      "node" : ">=4.1.1",
+      "npm" : ">=2.1.x"
+  },
+  "repository": "https://github.com/glahiri/myfirstapp.git",
+  "authors": [ "Ben Wen", "Chris Chang" ],
+  "license": "MIT",
+  "dependencies": {
+    "express": "4.13.3",
+    "mongoose": ">=4.1.11"
+  },
+  "changelog" : [{"0.0.0": "Initial release"}],
+  "homepage" : "https://stark-mesa-3118.herokuapp.com"
+}
