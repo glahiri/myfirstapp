@@ -3,12 +3,15 @@
   "version": "0.0.0",
   "description": "Basic application with github and heroku",
   "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  }
   "engines" : { 
       "node" : ">=4.1.1",
       "npm" : ">=2.1.x"
   },
   "repository": "https://github.com/glahiri/myfirstapp.git",
-  "authors": [ "Ben Wen", "Chris Chang" ],
+  "authors": [ "Gourab Lahiri" ],
   "license": "MIT",
   "dependencies": {
     "express": "4.13.3",
