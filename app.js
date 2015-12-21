@@ -50,9 +50,9 @@ app.get('/', function(request, response) {
   */
 });
 
-app.get('/user',function(req,res){
+app.get('/user/:username',function(req,res){
 	console.log('request recieved at /user');
-	res.send('Welcome to this app ' + req.params.name);
+	res.send('Welcome to this app ' + req.params.username);
 });
 
 app.listen(app.get('port'), function() {
