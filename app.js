@@ -5,9 +5,9 @@ var mongodburi = process.env.mongodburi;
 
 mongoose.connect(mongodburi, function (err, res) {
   if (err) { 
-    console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+    console.log ('ERROR connecting to: ' + mongodburi + '. ' + err);
   } else {
-    console.log ('Succeeded connected to: ' + uristring);
+    console.log ('Succeeded connected to: ' + mongodburi);
   }
 });
 
