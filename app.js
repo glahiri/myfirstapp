@@ -29,7 +29,7 @@ app.get('/', function(request, response) {
 	  }
 	  else {
 		  console.log("Success query mongo");
-		  response.send(samples);
+		  response.send(samples.stringify());
 	  }	
   });
   
