@@ -11,16 +11,18 @@ mongoose.connect(mongodburi, function (err, res) {
   }
 });
 
+var sample_schema = new mongoose.Schema({
+	header: String
+});
+
+var Sample = mongoose.model('Sample',sample_schema);
+
+
 app.set('port', (process.env.PORT || 5000));
 
 app.get('/', function(request, response) {
   console.log('Request recieved!');
 
-  var sample_schema = new mongoose.Schema({
-	header: String
-  });
-
-  var Sample = mongoose.model('Sample',sample_schema);
 
   Sample.find({},function(err,samples){
 	  if(err) {
