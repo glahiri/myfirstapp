@@ -1,0 +1,7 @@
+{
+  "name": "hello-world",
+  "description": "Sample express app",
+  "image": "heroku/nodejs",
+  "repository": "https://github.com/glahiri/myfirstapp.git",
+  "keywords": ["node", "mongoose", "ODM", "express"]
+}
