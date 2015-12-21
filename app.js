@@ -24,7 +24,7 @@ app.get('/', function(request, response) {
   console.log('Request recieved!');
 
   var header = new Sample({
-  	header: 'Header created on ' + Date.now();
+  	header: 'Header created on ' + Date.now()
   });
   
   header.save(function(err){
