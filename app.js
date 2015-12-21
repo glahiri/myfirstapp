@@ -51,8 +51,8 @@ app.get('/', function(request, response) {
 });
 
 app.get('/user',function(req,res){
-	console.log('request recieved at /user ' + req.body);
-	res.send('Welcome to this app ' + req.body.name);
+	console.log('request recieved at /user');
+	res.send('Welcome to this app ' + req.params.name);
 });
 
 app.listen(app.get('port'), function() {
