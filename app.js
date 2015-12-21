@@ -1,7 +1,11 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 var mongoose = require ("mongoose");
 var mongodburi = process.env.mongodburi;
+
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 mongoose.connect(mongodburi, function (err, res) {
   if (err) { 
