@@ -52,7 +52,7 @@ app.get('/', function(request, response) {
 
 app.get('/user/:username',function(req,res){
 	console.log('request recieved at /user');
-	res.send('Welcome to this app ' + req.params.username);
+	res.send('Welcome to this app by Gourab ' + req.params.username);
 });
 
 app.listen(app.get('port'), function() {
