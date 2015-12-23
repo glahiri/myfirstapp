@@ -4,6 +4,10 @@ var app = express();
 var mongoose = require ("mongoose");
 var mongodburi = process.env.mongodburi;
 
+// views is directory for all template files
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
@@ -26,7 +30,7 @@ app.set('port', (process.env.PORT || 5000));
 
 app.get('/', function(request, response) {
   console.log('Request recieved!');
-  response.send('Welcome to this app');
+  response.render('index');
 /*
   var header = new Sample({
   	header: 'Header created on ' + Date.now()
