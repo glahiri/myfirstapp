@@ -40,7 +40,6 @@ app.get('/', function(request, response) {
   	if(err)
   		console.log('Error saving header');
   });
-
   Sample.find({},function(err,samples){
 	  if(err) {
 		  console.log("Error query to mongo " + err);
@@ -57,6 +56,10 @@ app.get('/', function(request, response) {
 app.get('/user/:username',function(req,res){
 	console.log('request recieved at /user');
 	res.send('Welcome to this app by Gourab ' + req.params.username);
+});
+
+app.get('/admin',function(req,res){
+	res.render('pages/admin');
 });
 
 app.listen(app.get('port'), function() {
