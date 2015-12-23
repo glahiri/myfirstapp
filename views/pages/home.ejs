@@ -102,6 +102,10 @@
 			}
 		});
 		var Article = React.createClass({
+			rawMarkup: function() {
+				var rawMarkup = marked(this.props.detail.toString(), {sanitize: true});
+				return { __html: rawMarkup };
+			},
 			setReadStatus: function(){
 				this.setState({read:true});
 			},
@@ -116,7 +120,7 @@
 										<h2 className="mdl-card__title-text">{this.props.title}</h2>
 									</div>
 									<div className="mdl-card__supporting-text">
-										{this.props.detail}
+										<span dangerouslySetInnerHTML={this.rawMarkup()} />
 									</div>
 									<div className="mdl-card__actions mdl-card--border">
 										<a className="mdl-button mdl-button--accent">
@@ -141,7 +145,7 @@
 							data:{
 								newsList: 
 									[
-										{newsId: 1, title: "Title 1", detail: "Detail 1", question: "Do you agree?"},
+										{newsId: 1, title: "Title 1", detail: "*Detail 1* this is a question  for those in power  let them see  or goto bower", question: "Do you agree?"},
 										{newsId: 2, title: "Title 2", detail: "Detail 2", question: "Do you believe?"}
 									]			
 							}
