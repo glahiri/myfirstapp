@@ -1,0 +1,142 @@
+<!DOCTYPE html>				
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Make your own news!</title>
+	<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+	<script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<Style>
+		main {
+			padding-top: 70px;
+		}
+		body {
+			font-family: 'Roboto','Helvetica','Arial',sans-serif!important;
+			background-color: #fafafa; 
+		}
+		.demo-card-wide {
+			width: 100%;
+		}
+	</Style>
+  </head>
+  <body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+		<header class="mdl-layout__header">
+			<div class="mdl-layout__header-row">
+				<!-- Title -->
+				<span class="mdl-layout-title">Opiniated</span>
+				<!-- Add spacer, to align navigation to the right -->
+				<div class="mdl-layout-spacer"></div>
+				 <!-- Navigation -->
+				<nav class="mdl-navigation">
+					<!-- Expandable Textfield -->
+					<form action="#">
+						<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+							<label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+								<i class="material-icons">search</i>
+							</label>
+							<div class="mdl-textfield__expandable-holder">
+								<input class="mdl-textfield__input" type="text" id="sample6" placeholder="Search for">
+								<label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+							</div>
+						</div>
+					</form>
+				</nav>
+			</div>
+		</header>
+		 <div class="mdl-layout__drawer">
+			<span class="mdl-layout-title">Opiniated</span>
+			<nav class="mdl-navigation">
+				<a class="mdl-navigation__link" href="">General</a>
+				<a class="mdl-navigation__link" href="">Politics</a>
+				<a class="mdl-navigation__link" href="">Sports</a>
+				<a class="mdl-navigation__link" href="">Entertainment</a>
+			</nav>
+		</div>
+	</div>
+	<!-- main content goes here -->
+	<main class="mdl-layout__content">
+	<div class='page-content'>
+		<div class="mdl-grid">
+			<div class="mdl-cell mdl-cell--12-col">
+				<div class="demo-card-wide mdl-card mdl-shadow--6dp">
+					<div class="mdl-card__title">
+						<h2 class="mdl-card__title-text">General</h2>
+					</div>
+					<div class="mdl-card__supporting-text">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						Mauris sagittis pellentesque lacus eleifend lacinia...
+					</div>
+					<div class="mdl-card__actions mdl-card--border">
+						<a class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect mdl-button--accent">
+							Vote your opinion
+						</a>
+					</div>
+					<div class="mdl-card__menu">
+						<button class="mdl-button mdl-button--icon mdl-button--accent mdl-button--raised mdl-js-button mdl-js-ripple-effect">
+							<i class="material-icons">share</i>
+						</button>
+					</div>
+				</div>
+			</div>	
+			<div class="mdl-cell mdl-cell--12-col">
+				<div class="demo-card-wide mdl-card mdl-shadow--6dp">
+					<div class="mdl-card__title">
+						<h2 class="mdl-card__title-text">Politics</h2>
+					</div>
+					<div class="mdl-card__supporting-text">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						Mauris sagittis pellentesque lacus eleifend lacinia...
+					</div>
+					<div class="mdl-card__actions mdl-card--border">
+						<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+							Get Started
+						</a>
+					</div>
+					<div class="mdl-card__menu">
+						<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+							<i class="material-icons">share</i>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="mdl-cell mdl-cell--12-col">
+				<div class="demo-card-wide mdl-card mdl-shadow--6dp">
+					<div class="mdl-card__title">
+						<h2 class="mdl-card__title-text">Sports</h2>
+					</div>
+					<div class="mdl-card__supporting-text">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						Mauris sagittis pellentesque lacus eleifend lacinia...
+					</div>
+					<div class="mdl-card__actions mdl-card--border">
+						<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+							Get Started
+						</a>
+					</div>
+					<div class="mdl-card__menu">
+						<button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+							<i class="material-icons">share</i>
+						</button>
+					</div>
+				</div>
+			</div>			
+	</div>
+	</main>
+	<footer class="mdl-mini-footer">
+		<div class="mdl-mini-footer__left-section">
+			<div class="mdl-logo">Powered by Gourab</div>
+			<ul class="mdl-mini-footer__link-list">
+				<li><a href="#">Contact Us</a></li>
+				<li><a href="#">Privacy & Terms</a></li>
+			</ul>
+		</div>
+	</footer>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+  </body>
+</html>
