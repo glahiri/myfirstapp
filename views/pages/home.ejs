@@ -20,6 +20,9 @@
 			font-family: 'Roboto','Helvetica','Arial',sans-serif!important;
 			background-color: #fafafa; 
 		}
+		.demo-card {
+			width: 220px;
+		}
 	</Style>
   </head>
   <body>
@@ -105,8 +108,8 @@
 			render: function() {	
 				return (
 						<div className="mdl-grid">
-							<div className="mdl-cell mdl-cell--12-col">
-								<div className="demo-card-wide mdl-card mdl-shadow--6dp">
+							<div className="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone">
+								<div className="demo-card mdl-card mdl-shadow--6dp">
 									<div className="mdl-card__title">
 										<h2 className="mdl-card__title-text">{this.props.title}</h2>
 									</div>
