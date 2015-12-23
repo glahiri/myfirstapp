@@ -20,8 +20,11 @@
 			font-family: 'Roboto','Helvetica','Arial',sans-serif!important;
 			background-color: #fafafa; 
 		}
-		.demo-card {
-			width: 220px;
+		.mdl-layout__content {
+			width: 100%;
+		}
+		.mdl-cell,.mdl-card {
+			width: 100%;
 		}
 	</Style>
   </head>
@@ -107,9 +110,8 @@
 			},
 			render: function() {	
 				return (
-						<div className="mdl-grid">
-							<div className="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone">
-								<div className="demo-card mdl-card mdl-shadow--6dp">
+						<div className="mdl-cell mdl-cell--8-col mdl-cell--4-col-phone">
+								<div className="mdl-card mdl-shadow--6dp">
 									<div className="mdl-card__title">
 										<h2 className="mdl-card__title-text">{this.props.title}</h2>
 									</div>
@@ -129,7 +131,6 @@
 										</button>
 									</div>
 								</div>
-							</div>	
 						</div>
 				);
 			}
@@ -152,7 +153,7 @@
 							return (<Article key={article.newsId} title={article.title} detail={article.detail} question={article.question}/>);
 						}
 					);
-				return (<div>{list}</div>);
+				return (<div className="demo-card mdl-grid">{list}</div>);
 			}
 		});
 		ReactDOM.render(
