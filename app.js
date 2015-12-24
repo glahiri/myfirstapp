@@ -111,7 +111,7 @@ app.get('/news',function(req,res){
 				res.json([]);
 	  }
 	  else {
-		  console.log("Success query mongo " + samples);
+		  console.log("Success query mongo");
 		  res.json(items);
 	  }
 	});
