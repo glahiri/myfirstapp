@@ -84,40 +84,60 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
 	<script type="text/babel">
 		var Article = React.createClass({
-			rawMarkup: function() {
-				var rawMarkup = marked(this.props.detail.toString(), {sanitize: true});
-				return { __html: rawMarkup };
+			handleTitleChange: function(e){
+				this.setState({title: e.target.value});
+				//console.log(this.state);
 			},
-			setEditStatus: function(){
-				this.setState({read:true});
+			handleDetailChange: function(e){
+				this.setState({detail: e.target.value});
+				//console.log(this.state);
 			},
-			getInitialState: function(){
-				return {read:false}
+			handleQuestionChange: function(e){
+				this.setState({question: e.target.value});
+				//console.log(this.state);
+			},
+			handleSubmit: function(e){
+				e.preventDefault();
+				var title = this.state.title.trim();
+				var detail = this.state.detail.trim();
+				var question = this.state.question.trim();
+				if(!title || !detail || !question)
+					return;
+				this.props.onNewsSubmit({
+					title: title,
+					detail: detail,
+					question: question
+				});
+				this.setState({
+					title: '',
+					detail: '',
+					question: ''
+				});
 			},
 			render: function() {	
 				return (
 						<div className="mdl-cell mdl-cell--8-col mdl-cell--4-col-phone">
-							<form>
+							<form onSubmit={this.handleSubmit}>
 								<div className="mdl-card mdl-shadow--6dp">
 									<div className="mdl-card__title">
 										<div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-											<input className="mdl-textfield__input" type="text" id="title" defaultValue={this.props.title}/>
+											<input className="mdl-textfield__input" type="text" id="title" onChange={this.handleTitleChange} defaultValue={this.props.title}/>
 											<label className="mdl-textfield__label" for="sample1">Title...</label>
 										</div>
 									</div>
 									<div className="mdl-card__supporting-text">
 										<div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-											<textarea className="mdl-textfield__input" type="text" rows= "3" id="detail" defaultValue={this.props.detail}></textarea>
+											<textarea className="mdl-textfield__input" type="text" rows= "3" id="detail" onChange={this.handleDetailChange} defaultValue={this.props.detail}></textarea>
 											<label className="mdl-textfield__label" for="sample5">Detail...</label>
 										</div>
 									</div>
 									<div className="mdl-card__actions mdl-card--border">
 										<div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-											<input className="mdl-textfield__input" type="text" id="Question" defaultValue={this.props.question}/>
+											<input className="mdl-textfield__input" type="text" id="question" onChange={this.handleQuestionChange} defaultValue={this.props.question}/>
 											<label className="mdl-textfield__label" for="sample1">Question...</label>
 										</div>
 										<br/>
-										<input type="submit" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+										<input type="submit" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" defaultValue="Save">
 										</input>
 									</div>
 								</div>
@@ -129,26 +149,47 @@
 		var NewsList = React.createClass({
 			getInitialState: function(){
 				return ({
-							data:{
-								newsList: 
-									[
-										{newsId: 1, title: "Title 1", detail: "*Detail 1* this is a question  for those in power  let them see  or goto bower", question: "Do you agree?"},
-										{newsId: 2, title: "Title 2", detail: "Detail 2", question: "Do you believe?"}
-									]			
+							article:{
+								_id: null,
+								title: null,
+								detail: null,
+								question: null
 							}
 						}
 				);
 			},
-			render: function() {
-				var list = this.state.data.newsList.map(function(article){
-							return (<Article key={article.newsId} title={article.title} detail={article.detail} question={article.question}/>);
+			saveNewsItem: function(item){
+				if(this.state.article._id != null)
+					item._id = this.state.article._id;
+				$.ajax({
+					url: this.props.url,
+					dataType: 'json',
+					type: item._id != null?'POST':'PUT',
+					data: item,
+					success: function(res) {
+						if(res.status){
+							console.log('success ' + res.data);
+							this.setState({article: res.data});
+							this.setState({status:true});
 						}
-					);
+						else{
+							console.log('fail');
+							this.setState({status: false});
+						}
+					}.bind(this),
+					error: function(xhr, status, err) {
+						this.setState({status:false});
+						console.error(this.props.url, status, err.toString());
+					}.bind(this)
+				});
+			},
+			render: function() {
+				var list = <Article key={this.state.article.newsId} title={this.state.article.title} detail={this.state.article.detail} question={this.state.article.question} onNewsSubmit={this.saveNewsItem}/>;
 				return (<div className="demo-card mdl-grid">{list}</div>);
 			}
 		});
 		ReactDOM.render(
-			<NewsList/>,
+			<NewsList url='/news'/>,
 			document.getElementById('react-content')
 		);
 	</script>
