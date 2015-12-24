@@ -199,6 +199,7 @@
 			render: function() {
 				var that = this;
 				var list = this.state.data.map(function(article){
+					console.log(article);
 					return (<Article key={article.newsId} title={article.title} detail={article.detail} question={article.question} onNewsSubmit={that.saveNewsItem}/>);
 				});	
 				return (<div className="demo-card mdl-grid">{list}</div>);
