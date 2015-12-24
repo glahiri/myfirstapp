@@ -117,25 +117,26 @@
 				});
 			},
 			render: function() {	
+				console.log(this.props);
 				return (
 						<div className="mdl-cell mdl-cell--8-col mdl-cell--4-col-phone">
 							<form onSubmit={this.handleSubmit}>
 								<div className="mdl-card mdl-shadow--6dp">
 									<div className="mdl-card__title">
 										<div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-											<input className="mdl-textfield__input" type="text" id="title" onChange={this.handleTitleChange} defaultValue={this.props.title}/>
+											<input className="mdl-textfield__input" type="text" id="title" onChange={this.handleTitleChange} defaultValue={this.state.title}/>
 											<label className="mdl-textfield__label" for="sample1">Title...</label>
 										</div>
 									</div>
 									<div className="mdl-card__supporting-text">
 										<div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-											<textarea className="mdl-textfield__input" type="text" rows= "3" id="detail" onChange={this.handleDetailChange} defaultValue={this.props.detail}></textarea>
+											<textarea className="mdl-textfield__input" type="text" rows= "3" id="detail" onChange={this.handleDetailChange} defaultValue={this.state.detail}></textarea>
 											<label className="mdl-textfield__label" for="sample5">Detail...</label>
 										</div>
 									</div>
 									<div className="mdl-card__actions mdl-card--border">
 										<div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-											<input className="mdl-textfield__input" type="text" id="question" onChange={this.handleQuestionChange} defaultValue={this.props.question}/>
+											<input className="mdl-textfield__input" type="text" id="question" onChange={this.handleQuestionChange} defaultValue={this.state.question}/>
 											<label className="mdl-textfield__label" for="sample1">Question...</label>
 										</div>
 										<br/>
@@ -200,7 +201,7 @@
 				var that = this;
 				var list = this.state.data.map(function(article){
 					console.log(article);
-					return (<Article key={article.newsId} title={article.title} detail={article.detail} question={article.question} onNewsSubmit={that.saveNewsItem}/>);
+					return (<Article key={article._id} title={article.title} detail={article.detail} question={article.question} onNewsSubmit={that.saveNewsItem}/>);
 				});	
 				return (<div className="demo-card mdl-grid">{list}</div>);
 			}
