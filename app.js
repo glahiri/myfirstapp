@@ -19,12 +19,15 @@ mongoose.connect(mongodburi, function (err, res) {
   }
 });
 
+/*
 var sample_schema = new mongoose.Schema({
 	header: String
 });
 
 var Sample = mongoose.model('Sample',sample_schema);
+*/
 
+var NewsItem = require('./models/newsitem.js');
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -60,6 +63,41 @@ app.get('/user/:username',function(req,res){
 
 app.get('/admin',function(req,res){
 	res.render('pages/admin');
+});
+
+app.post('/news',function(req,res){
+	console.log('Post request received!');
+	var news = new NewsItem();
+	news.title = req.body.title;
+	news.detail = req.body.detail;
+	news.question = req.body.question;
+	news.save(function(err){
+		if(err)
+			res.json({status:false});
+	});
+	res.json({
+		status:	true,
+		data: news
+	});
+});
+
+app.put('/news',function(req,res){
+	console.log('Put request received!');
+	var news = NewsItem.findById(req.body._id, function(err,item){
+		if(err)
+			res.json({status: false});
+		item.title = req.body.title;
+		item.detail = req.body.detail;
+		item.question = req.body.question;
+		item.save(function(err){
+			if(err)
+				res.json({status: false});
+			res.json({
+				status: true,
+				data: item
+			});
+		});
+	});
 });
 
 app.listen(app.get('port'), function() {
