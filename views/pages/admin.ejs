@@ -104,11 +104,13 @@
 				if(!title || !detail || !question)
 					return;
 				this.props.onNewsSubmit({
+					_id: this.props.key,
 					title: title,
 					detail: detail,
 					question: question
 				});
 				this.setState({
+					_id: null,
 					title: '',
 					detail: '',
 					question: ''
@@ -149,18 +151,28 @@
 		var NewsList = React.createClass({
 			getInitialState: function(){
 				return ({
-							article:{
+							data: [{
 								_id: null,
 								title: null,
 								detail: null,
 								question: null
-							}
-						}
-				);
+							}]
+						});
+			},
+			componentDidMount: function(){
+				$.ajax({
+					url: this.props.url,
+					dataType: 'json',
+					cache: false,
+					success: function(data) {
+						this.setState({data: data});
+					}.bind(this),
+					error: function(xhr, status, err) {
+						console.error(this.props.url, status, err.toString());
+					}.bind(this)
+				});
 			},
 			saveNewsItem: function(item){
-				if(this.state.article._id != null)
-					item._id = this.state.article._id;
 				$.ajax({
 					url: this.props.url,
 					dataType: 'json',
@@ -184,7 +196,9 @@
 				});
 			},
 			render: function() {
-				var list = <Article key={this.state.article.newsId} title={this.state.article.title} detail={this.state.article.detail} question={this.state.article.question} onNewsSubmit={this.saveNewsItem}/>;
+				var list = this.state.data.map(function(article){
+					return (<Article key={article.newsId} title={article.title} detail={article.detail} question={article.question} onNewsSubmit={this.saveNewsItem}/>);
+				});	
 				return (<div className="demo-card mdl-grid">{list}</div>);
 			}
 		});
