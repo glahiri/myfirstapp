@@ -84,19 +84,36 @@ app.post('/news',function(req,res){
 app.put('/news',function(req,res){
 	console.log('Put request received!');
 	var news = NewsItem.findById(req.body._id, function(err,item){
-		if(err)
+		if(err){
 			res.json({status: false});
-		item.title = req.body.title;
-		item.detail = req.body.detail;
-		item.question = req.body.question;
-		item.save(function(err){
-			if(err)
-				res.json({status: false});
-			res.json({
-				status: true,
-				data: item
+		}
+		else{
+			item.title = req.body.title;
+			item.detail = req.body.detail;
+			item.question = req.body.question;
+			item.save(function(err){
+				if(err)
+					res.json({status: false});
+				res.json({
+					status: true,
+					data: item
+				});
 			});
-		});
+		}
+	});
+});
+
+app.get('/news',function(req,res){
+	console.get('Get request recieved!');
+	NewsItem.find({},function(err,items){
+			  if(err) {
+				console.log("Error query to mongo " + err);
+				res.json([]);
+	  }
+	  else {
+		  console.log("Success query mongo " + samples);
+		  res.json(items);
+	  }
 	});
 });
 
