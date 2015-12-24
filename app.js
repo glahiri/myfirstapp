@@ -104,7 +104,7 @@ app.put('/news',function(req,res){
 });
 
 app.get('/news',function(req,res){
-	console.get('Get request recieved!');
+	console.log('Get request recieved!');
 	NewsItem.find({},function(err,items){
 			  if(err) {
 				console.log("Error query to mongo " + err);
