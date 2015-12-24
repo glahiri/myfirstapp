@@ -164,7 +164,7 @@
 				$.ajax({
 					url: this.props.url,
 					dataType: 'json',
-					type: item._id != null?'POST':'PUT',
+					type: item._id != null?'PUT':'POST',
 					data: item,
 					success: function(res) {
 						if(res.status){
