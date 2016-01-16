@@ -33,7 +33,7 @@ app.set('port', (process.env.PORT || 5000));
 
 app.get('/', function(request, response) {
   console.log('Request recieved!');
-  response.render('pages/home');
+  response.render('pages/index');
 /*
   var header = new Sample({
   	header: 'Header created on ' + Date.now()
