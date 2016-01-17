@@ -72,9 +72,15 @@
 			function generateList(){
 				for(var i=0;i<items.length;i++){
 					var li = document.createElement('li');
-					li.innerHTML = items[i].header;
+					var a = document.createElement('a');
+					a.href = 'javascript:getItem()';
+					a.innerHTML = items[i].header;
+					li.appendChild(a);
 					$('#list').append(li);
 				}
+			}
+			function getItem(){
+				console.log('got it');
 			}
 			function loadItems () {
 				$.ajax(
@@ -85,8 +91,6 @@
 					  success: function(data) {
 						items = data;
 						generateList();
-						//console.log(data);
-						//setInterval(loadItems, 1000);
 					  },
 					  error: function(xhr, status, err) {
 						console.error('/news', status, err.toString());
@@ -95,8 +99,7 @@
 				);
 			}
 			window.onload = function () {
-				//setInterval(loadItems, 1000);
-				loadItems();
+				setInterval(loadItems, 1000);
 			}
 		</script>
 	</body>
