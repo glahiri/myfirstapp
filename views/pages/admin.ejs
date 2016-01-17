@@ -34,7 +34,10 @@
 						<input type='radio' name='active' value='true'/>True&nbsp;
 						<input type='radio' name='active' value='false'/>False&nbsp;
 					</div>
-					<div><input type='submit' value='Submit'/></div>
+					<div>
+						<input type='hidden' id='_id'/>
+						<input type='submit' value='Submit'/>
+					</div>
 				</form>
 			</div>
 		</div>
@@ -52,14 +55,22 @@
 					published: $('#published').val(),
 					active: $("input[name='active']:checked").val()
 				}
+				var id = $('#_id').val();
+				if(id != ''){
+					item._id = id;
+				}
+				var method = id != '' ? 'PUT' : 'POST';
 				 $.ajax(
 					{
 					  url: '/news',
 					  dataType: 'json',
-					  type: 'POST',
+					  type: method,
 					  data: item,
 					  success: function(data) {
-						console.log('Successfully saved - id - ' + data._id);
+						if(method == 'POST')
+							console.log('Successfully saved.');
+						else
+							console.log('Successfully updated.');
 						$('#myform')[0].reset();
 					  },
 					  error: function(xhr, status, err) {
@@ -81,7 +92,23 @@
 				}
 			}
 			function getItem(key){
-				console.log('got it - ' + key);
+				clearInterval(loadItems);
+				for(var i=0;i<items.length;i++){
+					if(items[i]._id == key){
+						$('#header').get(0).value = items[i].header;
+						$('#detail').get(0).value = items[i].detail;
+						$('#mediatype').get(0).value = items[i].mediatype;
+						$('#mediasource').get(0).value = items[i].mediasource;
+						$('#source').get(0).value = items[i].source;
+						$('#published').get(0).value = items[i].published;
+						if(items[i].active == true)
+							$("input[name='active'][value='true']").get(0).checked = true;
+						else
+							$("input[name='active'][value='false']").get(0).checked = true;
+						$('#_id').get(0).value = items[i]._id;
+					}
+				setInterval(loadItems,5000);
+				}
 			}
 			function loadItems () {
 				$.ajax(
