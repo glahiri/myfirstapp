@@ -68,7 +68,14 @@
 					}
 				);
 			}
-			
+			var items = [];
+			function generateList(){
+				for(var i=0;i<items.length;i++){
+					var li = document.createElement('li');
+					li.innerHTML = items[i].header;
+					$('#list').append(li);
+				}
+			}
 			function loadItems () {
 				$.ajax(
 					{
@@ -76,7 +83,9 @@
 					  dataType: 'json',
 					  cache: false,
 					  success: function(data) {
-						console.log(data);
+						items = data;
+						generateList();
+						//console.log(data);
 						//setInterval(loadItems, 1000);
 					  },
 					  error: function(xhr, status, err) {
@@ -86,7 +95,8 @@
 				);
 			}
 			window.onload = function () {
-				setInterval(loadItems, 1000);
+				//setInterval(loadItems, 1000);
+				loadItems();
 			}
 		</script>
 	</body>
