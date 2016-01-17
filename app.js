@@ -62,7 +62,7 @@ app.post('/news',function(req,res){
 });
 
 app.put('/news',function(req,res){
-	console.log('Put request received!');
+	console.log('Put request received! - id=' + req.body._id);
 	var news = NewsItem.findById(req.body._id, function(err,item){
 		if(err){
 			res.json({status: false});
