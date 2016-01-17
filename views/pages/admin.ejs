@@ -68,9 +68,9 @@
 					  data: item,
 					  success: function(data) {
 						if(method == 'POST')
-							console.log('Successfully saved.');
+							console.log('Successfully saved. - ' + data.status);
 						else
-							console.log('Successfully updated.');
+							console.log('Successfully updated. - ' + data.status);
 						$('#myform')[0].reset();
 					  },
 					  error: function(xhr, status, err) {
