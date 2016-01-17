@@ -101,14 +101,15 @@
 						$('#mediatype').get(0).value = items[i].mediatype;
 						$('#mediasource').get(0).value = items[i].mediasource;
 						$('#source').get(0).value = items[i].source;
-						$('#published').get(0).value = items[i].published;
+						var mydate = new Date(items[i].published);
+						$('#published').get(0).value = mydate.getFullYear() + '-' + (mydate.getMonth()+1) + '-' + mydate.getDate();
 						if(items[i].active == true)
 							$("input[name='active'][value='true']").get(0).checked = true;
 						else
 							$("input[name='active'][value='false']").get(0).checked = true;
 						$('#_id').get(0).value = items[i]._id;
 					}
-				interval = setInterval(loadItems,30000);
+				interval = setInterval(loadItems,5000);
 				}
 			}
 			function loadItems () {
@@ -128,7 +129,7 @@
 				);
 			}
 			window.onload = function () {
-				interval = setInterval(loadItems, 30000);
+				interval = setInterval(loadItems, 5000);
 			}
 		</script>
 	</body>
