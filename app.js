@@ -35,31 +35,6 @@ app.set('port', (process.env.PORT || 5000));
 app.get('/', function(request, response) {
   console.log('Request recieved!');
   response.render('pages/index');
-/*
-  var header = new Sample({
-  	header: 'Header created on ' + Date.now()
-  });
-  
-  header.save(function(err){
-  	if(err)
-  		console.log('Error saving header');
-  });
-  Sample.find({},function(err,samples){
-	  if(err) {
-		  console.log("Error query to mongo " + err);
-		  response.send("Error quering mongo");
-	  }
-	  else {
-		  console.log("Success query mongo " + samples);
-		  response.json(samples);
-	  }	
-  });
-  */
-});
-
-app.get('/user/:username',function(req,res){
-	console.log('request recieved at /user');
-	res.send('Welcome to this app by Gourab ' + req.params.username);
 });
 
 app.get('/admin',function(req,res){
@@ -69,9 +44,13 @@ app.get('/admin',function(req,res){
 app.post('/news',function(req,res){
 	console.log('Post request received!');
 	var news = new NewsItem();
-	news.title = req.body.title;
+	news.header = req.body.header;
 	news.detail = req.body.detail;
-	news.question = req.body.question;
+	news.mediatype = req.body.mediatype;
+	news.mediasource = req.body.mediasource;
+	news.source = req.body.source;
+	news.published = req.body.published;
+	news.active = req.body.active;
 	news.save(function(err){
 		if(err)
 			res.json({status:false});
@@ -89,9 +68,13 @@ app.put('/news',function(req,res){
 			res.json({status: false});
 		}
 		else{
-			item.title = req.body.title;
-			item.detail = req.body.detail;
-			item.question = req.body.question;
+			news.header = req.body.header;
+			news.detail = req.body.detail;
+			news.mediatype = req.body.mediatype;
+			news.mediasource = req.body.mediasource;
+			news.source = req.body.source;
+			news.published = req.body.published;
+			news.active = req.body.active;
 			item.save(function(err){
 				if(err)
 					res.json({status: false});
