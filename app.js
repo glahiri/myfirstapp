@@ -75,7 +75,7 @@ app.put('/news',function(req,res){
 			news.source = req.body.source;
 			news.published = req.body.published;
 			news.active = req.body.active;
-			item.save(function(err){
+			news.save(function(err){
 				if(err)
 					res.json({status: false});
 				res.json({
