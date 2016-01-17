@@ -4,9 +4,13 @@ var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
 var NewsItemSchema   = new Schema({
-    title: String,
+    header: String,
     detail: String,
-    question: String
+    source: String,
+    mediatype: String,
+    mediasource: String,
+    published: Date,
+    active: Boolean
 });
 
 module.exports = mongoose.model('NewsItem', NewsItemSchema);
