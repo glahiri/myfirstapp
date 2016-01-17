@@ -91,8 +91,9 @@
 					$('#list').append(li);
 				}
 			}
+			var interval = {};
 			function getItem(key){
-				clearInterval(loadItems);
+				clearInterval(interval);
 				for(var i=0;i<items.length;i++){
 					if(items[i]._id == key){
 						$('#header').get(0).value = items[i].header;
@@ -107,7 +108,7 @@
 							$("input[name='active'][value='false']").get(0).checked = true;
 						$('#_id').get(0).value = items[i]._id;
 					}
-				setInterval(loadItems,5000);
+				interval = setInterval(loadItems,30000);
 				}
 			}
 			function loadItems () {
@@ -127,7 +128,7 @@
 				);
 			}
 			window.onload = function () {
-				setInterval(loadItems, 5000);
+				interval = setInterval(loadItems, 30000);
 			}
 		</script>
 	</body>
