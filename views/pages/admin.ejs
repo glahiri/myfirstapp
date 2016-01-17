@@ -70,17 +70,18 @@
 			}
 			var items = [];
 			function generateList(){
+				$('#list').get(0).innerHTML = '';
 				for(var i=0;i<items.length;i++){
 					var li = document.createElement('li');
 					var a = document.createElement('a');
-					a.href = 'javascript:getItem()';
+					a.href = "javascript:getItem("+items[i]._id+")";
 					a.innerHTML = items[i].header;
 					li.appendChild(a);
 					$('#list').append(li);
 				}
 			}
-			function getItem(){
-				console.log('got it');
+			function getItem(key){
+				console.log('got it - ' + key);
 			}
 			function loadItems () {
 				$.ajax(
