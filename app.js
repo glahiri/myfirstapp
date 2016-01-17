@@ -63,7 +63,7 @@ app.post('/news',function(req,res){
 
 app.put('/news',function(req,res){
 	console.log('Put request received! - id=' + req.body._id);
-	var news = NewsItem.findById(req.body._id, function(err,item){
+	NewsItem.findById(req.body._id, function(err,news){
 		if(err){
 			res.json({status: false});
 		}
@@ -80,7 +80,7 @@ app.put('/news',function(req,res){
 					res.json({status: false});
 				res.json({
 					status: true,
-					data: item
+					data: news
 				});
 			});
 		}
