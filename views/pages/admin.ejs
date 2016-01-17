@@ -74,7 +74,7 @@
 				for(var i=0;i<items.length;i++){
 					var li = document.createElement('li');
 					var a = document.createElement('a');
-					a.href = "javascript:getItem("+items[i]._id+")";
+					a.href = "javascript:getItem('"+items[i]._id+"')";
 					a.innerHTML = items[i].header;
 					li.appendChild(a);
 					$('#list').append(li);
@@ -100,7 +100,7 @@
 				);
 			}
 			window.onload = function () {
-				setInterval(loadItems, 1000);
+				setInterval(loadItems, 5000);
 			}
 		</script>
 	</body>
