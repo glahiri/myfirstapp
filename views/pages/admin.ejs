@@ -102,7 +102,8 @@
 						$('#mediasource').get(0).value = items[i].mediasource;
 						$('#source').get(0).value = items[i].source;
 						var mydate = new Date(items[i].published);
-						$('#published').get(0).value = mydate.getFullYear() + '-' + (mydate.getMonth()+1) + '-' + mydate.getDate();
+						var month = mydate.getMonth()+1;
+						$('#published').get(0).value = mydate.getFullYear() + '-' + (month < 10 ? '0'+ month:month) + '-' + mydate.getDate();
 						if(items[i].active == true)
 							$("input[name='active'][value='true']").get(0).checked = true;
 						else
