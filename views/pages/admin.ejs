@@ -1,215 +1,74 @@
 <!DOCTYPE html>				
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Make your own news!</title>
-	<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
-	<script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.3/react-dom.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<Style>
-		main {
-			padding-top: 70px;
-		}
-		body {
-			font-family: 'Roboto','Helvetica','Arial',sans-serif!important;
-			background-color: #fafafa; 
-		}
-		.mdl-layout__content {
-			width: 100%;
-		}
-		.mdl-cell,.mdl-card {
-			width: 100%;
-		}
-	</Style>
-  </head>
-  <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-		<header class="mdl-layout__header">
-			<div class="mdl-layout__header-row">
-				<!-- Title -->
-				<span class="mdl-layout-title">Opiniated</span>
-				<!-- Add spacer, to align navigation to the right -->
-				<div class="mdl-layout-spacer"></div>
-				 <!-- Navigation -->
-				<nav class="mdl-navigation">
-					<!-- Expandable Textfield -->
-					<form action="#">
-						<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-							<label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
-								<i class="material-icons">search</i>
-							</label>
-							<div class="mdl-textfield__expandable-holder">
-								<input class="mdl-textfield__input" type="text" id="sample6" placeholder="Search for">
-								<label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
-							</div>
-						</div>
-					</form>
-				</nav>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+			.form > div {
+				margin-bottom: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div style='margin: 30px'>
+			<div style='float: left; min-width: 30%; height: 600px; overflow: auto;'>
+				<ul id='list'>
+				</ul>
 			</div>
-		</header>
-		 <div class="mdl-layout__drawer">
-			<span class="mdl-layout-title">Opiniated</span>
-			<nav class="mdl-navigation">
-				<a class="mdl-navigation__link" href="">General</a>
-				<a class="mdl-navigation__link" href="">Politics</a>
-				<a class="mdl-navigation__link" href="">Sports</a>
-				<a class="mdl-navigation__link" href="">Entertainment</a>
-			</nav>
+			<div style='float: left'>
+				<form method='POST' action='javascript:handleSubmit()' class='form' id='myform'>
+					<div><b>Header</b></div><div><input type='text' id='header' placeholder='header'/></div>
+					<div><b>Detail</b></div><div><textarea id='detail' placeholder='detail' rows='10' col='50'></textarea></div>
+					<div><b>Media Type</b></div><div>
+						<select id='mediatype' width='30'>
+							<option value=''>Select</option>
+							<option value='video'>Video</option>
+							<option value='image'>image</option>
+						</select>
+					</div>
+					<div><b>Media Source</b></div><div><input type='text' id='mediasource' placeholder='image / video link'/></div>
+					<div><b>Source</b></div><div><input type='text' id='source' placeholder='Source'/></div>
+					<div><b>Published</b></div><div><input type='date' id='published'/></div>
+					<div><b>Active</b></div><div>
+						<input type='radio' name='active' value='true'/>True&nbsp;
+						<input type='radio' name='active' value='false'/>False&nbsp;
+					</div>
+					<div><input type='submit' value='Submit'/></div>
+				</form>
+			</div>
 		</div>
-	</div>
-	<!-- main content goes here -->
-	<main class="mdl-layout__content">
-	<div class='page-content'>
-		<div id="react-content"></div>
-	</div>
-	</main>
-	<footer class="mdl-mini-footer">
-		<div class="mdl-mini-footer__left-section">
-			<div class="mdl-logo">Powered by Gourab</div>
-			<ul class="mdl-mini-footer__link-list">
-				<li><a href="#">Contact Us</a></li>
-				<li><a href="#">Privacy & Terms</a></li>
-			</ul>
-		</div>
-	</footer>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
-	<script type="text/babel">
-		var Article = React.createClass({
-			handleTitleChange: function(e){
-				this.setState({title: e.target.value});
-				//console.log(this.state);
-			},
-			handleDetailChange: function(e){
-				this.setState({detail: e.target.value});
-				//console.log(this.state);
-			},
-			handleQuestionChange: function(e){
-				this.setState({question: e.target.value});
-				//console.log(this.state);
-			},
-			handleSubmit: function(e){
-				e.preventDefault();
-				var title = this.state.title.trim();
-				var detail = this.state.detail.trim();
-				var question = this.state.question.trim();
-				if(!title || !detail || !question)
-					return;
-				this.props.onNewsSubmit({
-					_id: this.props.key,
-					title: title,
-					detail: detail,
-					question: question
-				});
-				this.setState({
-					_id: null,
-					title: '',
-					detail: '',
-					question: ''
-				});
-			},
-			render: function() {	
-				console.log(this.props);
-				return (
-						<div className="mdl-cell mdl-cell--8-col mdl-cell--4-col-phone">
-							<form onSubmit={this.handleSubmit}>
-								<div className="mdl-card mdl-shadow--6dp">
-									<div className="mdl-card__title">
-										<div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-											<input className="mdl-textfield__input" type="text" id="title" onChange={this.handleTitleChange} defaultValue={this.props.title}/>
-											<label className="mdl-textfield__label" for="sample1">Title...</label>
-										</div>
-									</div>
-									<div className="mdl-card__supporting-text">
-										<div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-											<textarea className="mdl-textfield__input" type="text" rows= "3" id="detail" onChange={this.handleDetailChange} defaultValue={this.props.detail}></textarea>
-											<label className="mdl-textfield__label" for="sample5">Detail...</label>
-										</div>
-									</div>
-									<div className="mdl-card__actions mdl-card--border">
-										<div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-											<input className="mdl-textfield__input" type="text" id="question" onChange={this.handleQuestionChange} defaultValue={this.props.question}/>
-											<label className="mdl-textfield__label" for="sample1">Question...</label>
-										</div>
-										<br/>
-										<input type="submit" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" defaultValue="Save">
-										</input>
-									</div>
-								</div>
-							</form>
-						</div>
+		
+		<!-- JQUERY scripts -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script type='text/javascript'>
+			function handleSubmit(){
+				var item = {
+					header: $('#header').val(),
+					detail: $('#detail').val(),
+					mediatype: $('#mediatype').val(),
+					mediasource: $('#mediasource').val(),
+					source: $('#source').val(),
+					published: $('#published').val(),
+					active: $("input[name='active']:checked").val()
+				}
+				 $.ajax(
+					{
+					  url: '/news',
+					  dataType: 'json',
+					  type: 'POST',
+					  data: item,
+					  success: function(data) {
+						console.log('Successfully saved - id - ' + data._id);
+						$('#myform')[0].reset();
+					  },
+					  error: function(xhr, status, err) {
+						console.error('/news', status, err.toString());
+					  }
+					}
 				);
 			}
-		});
-		var NewsList = React.createClass({
-			getInitialState: function(){
-				return ({
-							data: [{
-								_id: null,
-								title: null,
-								detail: null,
-								question: null
-							}]
-						});
-			},
-			componentDidMount: function(){
-				$.ajax({
-					url: this.props.url,
-					dataType: 'json',
-					cache: false,
-					success: function(data) {
-						this.setState({data: data});
-						console.log(this.state.data);
-					}.bind(this),
-					error: function(xhr, status, err) {
-						console.error(this.props.url, status, err.toString());
-					}.bind(this)
-				});
-			},
-			saveNewsItem: function(item){
-				$.ajax({
-					url: this.props.url,
-					dataType: 'json',
-					type: item._id != null?'PUT':'POST',
-					data: item,
-					success: function(res) {
-						if(res.status){
-							console.log('success ' + res.data);
-							this.setState({article: res.data});
-							this.setState({status:true});
-						}
-						else{
-							console.log('fail');
-							this.setState({status: false});
-						}
-					}.bind(this),
-					error: function(xhr, status, err) {
-						this.setState({status:false});
-						console.error(this.props.url, status, err.toString());
-					}.bind(this)
-				});
-			},
-			render: function() {
-				var that = this;
-				var list = this.state.data.map(function(article){
-					console.log(article);
-					return (<Article key={article._id} title={article.title} detail={article.detail} question={article.question} onNewsSubmit={that.saveNewsItem}/>);
-				});	
-				return (<div className="demo-card mdl-grid">{list}</div>);
-			}
-		});
-		ReactDOM.render(
-			<NewsList url='/news'/>,
-			document.getElementById('react-content')
-		);
-	</script>
-  </body>
+		</script>
+	</body>
 </html>
+				
