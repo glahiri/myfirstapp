@@ -49,10 +49,10 @@
 	          <label>Media Type</label>
 	          <div class='radio'>
 	   	        <label class='radio-inline'>
-			          <input type="radio" name='mediatype' value='Image'> Image
+			          <input type="radio" name='mediatype' value='image'> Image
 		          </label>
 	   	        <label class='radio-inline'>
-			          <input type="radio" name='mediatype' value='Video'> Video
+			          <input type="radio" name='mediatype' value='video'> Video
 		          </label>
 	          </div>
           </div>
@@ -132,9 +132,9 @@
 						$('#header').get(0).value = items[i].header;
 						$('#detail').get(0).value = items[i].detail;
 						if(items[i].mediatype == 'Image')
-							$("input[name='mediatype'][value='Image']").get(0).checked = true;
+							$("input[name='mediatype'][value='image']").get(0).checked = true;
 						else
-							$("input[name='mediatype'][value='Video']").get(0).checked = true;
+							$("input[name='mediatype'][value='video']").get(0).checked = true;
 						$('#mediasource').get(0).value = items[i].mediasource;
 						$('#source').get(0).value = items[i].source;
 						var mydate = new Date(items[i].published);
