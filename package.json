@@ -7,8 +7,8 @@
     "start": "node app.js"
   },
   "engines" : { 
-      "node" : ">=4.1.1",
-      "npm" : ">=2.1.x"
+      "node" : "=5.4.x",
+      "npm" : "=3.5.3"
   },
   "repository": "https://github.com/glahiri/myfirstapp.git",
   "authors": [ "Gourab Lahiri" ],
