@@ -30,7 +30,7 @@
   <div class='container'>
     <div class="panel panel-default">
       <div class="panel-body">
-        <form>
+        <form method='POST' action='javascript:handleSubmit()' id='myform'>
 	        <div class='form-group'>
 	   	      <label>Headline</label>
 		        <input type="text" class="form-control" placeholder="Headline" id='headline'/>
@@ -74,7 +74,7 @@
 	          </div>
           </div>
           <input class="btn btn-primary" type="submit" value="Submit">
-          <input class="btn btn-default" type="reset" value="Reset">
+          <input class="btn btn-default" type="reset" value="Reset" onClick='javascript:resetForm()'>
 	      </form>
       </div>
      </div>
@@ -119,8 +119,70 @@
 				);
 			}
 			var interval = {};
+			function getItem(key){
+				clearInterval(interval);
+				for(var i=0;i<items.length;i++){
+					if(items[i]._id == key){
+						$('#header').get(0).value = items[i].header;
+						$('#detail').get(0).value = items[i].detail;
+						$('#mediatype').get(0).value = items[i].mediatype;
+						if(items[i].mediatype == 'Image')
+							$("input[name='mediatype'][value='Image']").get(0).checked = true;
+						else
+							$("input[name='mediatype'][value='Video']").get(0).checked = true;
+						$('#mediasource').get(0).value = items[i].mediasource;
+						$('#source').get(0).value = items[i].source;
+						var mydate = new Date(items[i].published);
+						var month = mydate.getMonth()+1;
+						$('#published').get(0).value = mydate.getFullYear() + '-' + (month < 10 ? '0'+ month:month) + '-' + mydate.getDate();
+						if(items[i].active == true)
+							$("input[name='active'][value='true']").get(0).checked = true;
+						else
+							$("input[name='active'][value='false']").get(0).checked = true;
+						$('#_id').get(0).value = items[i]._id;
+					}
+				interval = setInterval(loadItems,5000);
+				}
+			}			
 			window.onload = function () {
 				interval = setInterval(loadItems, 5000);
+			}
+			function handleSubmit(){
+				var item = {
+					header: $('#header').val(),
+					detail: $('#detail').val(),
+					mediatype: $('#mediatype').val(),
+					mediasource: $("input[name='mediasource']:checked").val(),
+					source: $('#source').val(),
+					published: $('#published').val(),
+					active: $("input[name='active']:checked").val()
+				}
+				var id = $('#_id').val();
+				if(id != ''){
+					item._id = id;
+				}
+				var method = id != '' ? 'PUT' : 'POST';
+				 $.ajax(
+					{
+					  url: '/news',
+					  dataType: 'json',
+					  type: method,
+					  data: item,
+					  success: function(data) {
+						if(method == 'POST')
+							console.log('Successfully saved. - ' + data.status);
+						else
+							console.log('Successfully updated. - ' + data.status);
+						$('#myform')[0].reset();
+					  },
+					  error: function(xhr, status, err) {
+						console.error('/news', status, err.toString());
+					  }
+					}
+				);
+			}
+			function resetForm(){
+				$('#myform').get(0).reset();
 			}
   </script>
  </body>
