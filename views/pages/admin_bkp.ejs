@@ -131,7 +131,7 @@
 					if(items[i]._id == key){
 						$('#header').get(0).value = items[i].header;
 						$('#detail').get(0).value = items[i].detail;
-						if(items[i].mediatype == 'Image')
+						if(items[i].mediatype == 'image')
 							$("input[name='mediatype'][value='image']").get(0).checked = true;
 						else
 							$("input[name='mediatype'][value='video']").get(0).checked = true;
