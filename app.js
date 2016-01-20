@@ -38,7 +38,7 @@ app.get('/', function(request, response) {
 });
 
 app.get('/admin',function(req,res){
-	res.render('pages/admin');
+	res.render('pages/admin_bkp');
 });
 
 app.post('/news',function(req,res){
