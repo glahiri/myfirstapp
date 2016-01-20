@@ -7,6 +7,12 @@
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
   integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <style>
+	.myheader {
+		background-color: 'purple',
+		color: '#fff'
+	}
+  </style>
  </head>
  <body>
   <div class='jumbotron'>
@@ -108,7 +114,6 @@
 					  dataType: 'json',
 					  cache: false,
 					  success: function(data) {
-					  	console.log('data recieved ' + data.length);
 						items = data;
 						generateList();
 					  },
@@ -125,7 +130,6 @@
 					if(items[i]._id == key){
 						$('#header').get(0).value = items[i].header;
 						$('#detail').get(0).value = items[i].detail;
-						$('#mediatype').get(0).value = items[i].mediatype;
 						if(items[i].mediatype == 'Image')
 							$("input[name='mediatype'][value='Image']").get(0).checked = true;
 						else
