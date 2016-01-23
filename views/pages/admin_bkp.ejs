@@ -181,6 +181,7 @@
 			window.onload = function () {
 				interval = setInterval(loadItems, 5000);
 				toggleItems('news');
+				resetForm();
 			}
 			function toggleItems(item){
 				if(item == 'news'){
@@ -219,7 +220,7 @@
 							console.log('Successfully saved. - ' + data.status);
 						else
 							console.log('Successfully updated. - ' + data.status);
-						$('#myform')[0].reset();
+						resetForm();
 					  },
 					  error: function(xhr, status, err) {
 						console.error('/news', status, err.toString());
