@@ -14,6 +14,7 @@
 		margin-bottom: 15px;
 	}
   </style>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/markdown.js/0.5.0/markdown.min.js'></script>
  </head>
  <body>
 	 <div class='container-fluid myheader'>
@@ -65,7 +66,9 @@
 				</div>
 				<div class='form-group'>
 					<label>Details</label>
-					<TextArea class="form-control" placeholder="Details" id='detail' rows='5'></textarea>
+					<TextArea class="form-control" placeholder="Use markdown syntax  - refer https://daringfireball.net/projects/markdown/dingus - preview below." id='detail' rows='5' onkeyup='preview()'></textarea>
+					<p/>
+					<div class='well preview-details'></div>
 				</div>
 				<div class='form-group'>
 					<label>Media Type</label>
@@ -220,6 +223,9 @@
 					  }
 					}
 				);
+			}
+			function preview(){
+				$('.preview-details').get(0).innerHTML = markdown.toHTML($('#detail').val());
 			}
 			function resetForm(){
 				$('#myform').get(0).reset();
