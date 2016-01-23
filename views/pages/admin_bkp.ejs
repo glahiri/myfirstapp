@@ -9,7 +9,7 @@
   integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <style>
 	.myheader {
-		background-color: #800080;
+		background-color: #808080;
 		color: #fff;
 		margin-bottom: 15px;
 	}
@@ -128,6 +128,15 @@
 	  };
 			function generateList(){
 				//console.log('arrived - ' + items.length);
+				$('.item-count').get(0).innerText = items.length;
+				if(state.index == 0)
+					nextIndex(1);
+				if(state.myiyems.length == 0){
+					state.myitems = items.slice(((state.index-1) * state.max),(state.index*state.max));
+					displayList(state.myitems);
+				}
+			}
+			function displayList(items){
 				$('.newslist').get(0).innerHTML = '';
 				for(var i=0;i<items.length;i++){
 					var li = document.createElement('li');
@@ -141,8 +150,6 @@
 						li.className = 'list-group-item list-group-item-warning';
 					$('.newslist').append(li);
 				}
-				$('.item-count').get(0).innerText = items.length;
-				nextIndex(1);
 			}
 			function loadItems () {
 				$.ajax(
@@ -259,6 +266,8 @@
 				else
 					$('.move-left').addClass('disabled');
 				state.index = state.index + incr;
+				state.myitems = items.slice(((state.index-1) * state.max),(state.index*state.max));
+				displayList(state.myitems);
 			}
   </script>
  </body>
