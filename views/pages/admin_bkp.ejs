@@ -25,10 +25,11 @@
 			<!-- Single button -->
 			<div class='panel-heading'>
 				<div class="btn-group">
-				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick="toggleItems('news')">
-					Headlines <span class="caret"></span>
+				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<span class='main-item'>Select</span> <span class="caret"></span>
 				  </button>
 				  <ul class="dropdown-menu">
+					<li><a href="javascript:toggleItems('news')">Headline</a></li>
 					<li><a href="javascript:toggleItems('polls')">Polls</a></li>
 				  </ul>
 				</div>
@@ -184,6 +185,7 @@
 					$('.newslist').hide();
 					$('.polllist').show();
 				}
+				$('.main-item').get(0).innerText = item == 'news' ? 'Headlines' : 'Polls';
 			}
 			function handleSubmit(){
 				var item = {
