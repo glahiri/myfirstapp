@@ -27,7 +27,7 @@
 			<div class='panel-heading'>
 				<div class="btn-group">
 				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<span class='main-item'>Select</span> <span class="caret"></span>
+					<span class='main-item'></span><span class='badge item-count'></span> <span class="caret"></span>
 				  </button>
 				  <ul class="dropdown-menu">
 					<li><a href="javascript:toggleItems('news')">Headline</a></li>
@@ -136,6 +136,7 @@
 						li.className = 'list-group-item list-group-item-warning';
 					$('.newslist').append(li);
 				}
+				$('.item-count').get(0).innerText = items.length;
 			}
 			function loadItems () {
 				$.ajax(
