@@ -129,7 +129,10 @@
 					a.href = "javascript:getItem('"+items[i]._id+"')";
 					a.innerHTML = items[i].header;
 					li.appendChild(a);
-					li.className = 'list-group-item';
+					if(item[i].active)
+						li.className = 'list-group-item';
+					else
+						li.className = 'list-group-item list-group-item-warning';
 					$('.newslist').append(li);
 				}
 			}
