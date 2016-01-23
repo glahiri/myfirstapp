@@ -47,10 +47,10 @@
 				</ul>
 				<div>
 					<div style='float:left'>
-						<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-chevron-left'></span></button>
+						<button type='button' class='btn btn-default move-left' onClick='nextIndex(1)'><span class='glyphicon glyphicon-chevron-left'></span></button>
 					</div>
 					<div style='float:right'>
-						<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-chevron-right'></span></button>
+						<button type='button' class='btn btn-default move-right' onClick='nextIndex(-1)'><span class='glyphicon glyphicon-chevron-right'></span></button>
 					</div>
 					<p style='clear:both; height:0px;'></p>
 				</div>
@@ -121,6 +121,11 @@
   crossorigin="anonymous"></script>
   <script>
 	  var items = [];
+	  var state = {
+		index: 0,
+		max: 3
+		myitems: []
+	  };
 			function generateList(){
 				//console.log('arrived - ' + items.length);
 				$('.newslist').get(0).innerHTML = '';
@@ -137,6 +142,7 @@
 					$('.newslist').append(li);
 				}
 				$('.item-count').get(0).innerText = items.length;
+				nextIndex(1);
 			}
 			function loadItems () {
 				$.ajax(
@@ -242,6 +248,17 @@
 			function addNews(){
 				resetForm();
 				$('.newsitem').show();
+			}
+			function nextIndex(incr){
+				if((state.index + incr)*3 > items.length)
+					$('.move-right').addClass('disabled');
+				else
+					$('.move-right').removeClass('disabled');
+				if(items.length > state.max && (state.index + incr) > 1)
+					$('.move-left').removeClass('disabled');
+				else
+					$('.move-left').addClass('disabled');
+				state.index = state.index + incr;
 			}
   </script>
  </body>
