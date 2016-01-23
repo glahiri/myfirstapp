@@ -117,6 +117,7 @@
   <script>
 	  var items = [];
 			function generateList(){
+				console.log('arrived - ' + items.length);
 				$('.newslist').get(0).innerHTML = '';
 				for(var i=0;i<items.length;i++){
 					var li = document.createElement('li');
