@@ -25,11 +25,11 @@
 			<!-- Single button -->
 			<div class='panel-heading'>
 				<div class="btn-group">
-				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick="toggleItems('news')">
 					Headlines <span class="caret"></span>
 				  </button>
 				  <ul class="dropdown-menu">
-					<li><a href="#">Polls</a></li>
+					<li><a href="javascript:toggleItems('polls')">Polls</a></li>
 				  </ul>
 				</div>
 			</div>
@@ -173,6 +173,17 @@
 			window.onload = function () {
 				//interval = setInterval(loadItems, 5000);
 				loadItems();
+				toggleItems('news');
+			}
+			function toggleItems(item){
+				if(item == 'news'){
+					$('.newslist').show();
+					$('.polllist').hide();
+				}
+				else {
+					$('.newslist').hide();
+					$('.polllist').show();
+				}
 			}
 			function handleSubmit(){
 				var item = {
