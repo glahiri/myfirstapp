@@ -5,6 +5,7 @@ var Schema       = mongoose.Schema;
 
 var PollItemSchema   = new Schema({
     question: String,
+    active: Boolean
     options: Array
 });
 
