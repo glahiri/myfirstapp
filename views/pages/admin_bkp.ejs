@@ -291,6 +291,7 @@
 				$('.main-item').get(0).innerText = item == 'news' ? 'Headlines' : 'Polls';
 				$('.item-count').get(0).innerText = item == 'news' ? items.length : pollitems.length;
 				state.type = item;
+				state.index = 0;
 			}
 			function handleSubmit(){
 				var item = {};
