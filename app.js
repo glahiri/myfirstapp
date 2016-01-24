@@ -118,7 +118,7 @@ app.post('/poll',function(req,res){
 	});
 });
 
-app.put('/news',function(req,res){
+app.put('/poll',function(req,res){
 	console.log('Put request received for poll! - id=' + req.body._id);
 	PollItem.findById(req.body._id, function(err,poll){
 		if(err){
