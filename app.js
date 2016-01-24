@@ -125,7 +125,6 @@ app.put('/poll',function(req,res){
 			res.json({status: false});
 		}
 		else{
-			console.log(poll);
 			poll.question = req.body.question;
 			poll.options = req.body.options;
 			poll.active = req.body.active;
