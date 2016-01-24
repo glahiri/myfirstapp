@@ -29,6 +29,7 @@ var Sample = mongoose.model('Sample',sample_schema);
 */
 
 var NewsItem = require('./models/newsitem.js');
+var PollItem = require('./models/pollitem.js');
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -96,6 +97,58 @@ app.get('/news',function(req,res){
 	  }
 	  else {
 		  console.log("Success query mongo");
+		  res.json(items);
+	  }
+	});
+});
+
+app.post('/poll',function(req,res){
+	console.log('Post request received for poll!');
+	var poll = new PollItem();
+	poll.question = req.body.question;
+	poll.options = req.body.options;
+	poll.active = req.body.active;
+	poll.save(function(err){
+		if(err)
+			res.json({status:false});
+	});
+	res.json({
+		status:	true,
+		data: poll
+	});
+});
+
+app.put('/news',function(req,res){
+	console.log('Put request received for poll! - id=' + req.body._id);
+	PollItem.findById(req.body._id, function(err,poll){
+		if(err){
+			res.json({status: false});
+		}
+		else{
+			poll.question = req.body.question;
+			poll.options = req.body.options;
+			poll.active = req.body.active;
+			poll.save(function(err){
+				if(err)
+					res.json({status: false});
+				res.json({
+					status: true,
+					data: poll
+				});
+			});
+		}
+	});
+});
+
+app.get('/poll',function(req,res){
+	console.log('Get request recieved for poll!');
+	PollItem.find({},function(err,items){
+			  if(err) {
+				console.log("Error query to mongo " + err);
+				res.json([]);
+	  }
+	  else {
+		  console.log("Success query mongo for poll");
 		  res.json(items);
 	  }
 	});
