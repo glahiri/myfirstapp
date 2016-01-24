@@ -256,7 +256,7 @@
 					for(var i=0;i<pollitems.length;i++){
 						if(pollitems[i]._id == key){
 							$('#question').get(0).value = pollitems[i].question;
-							if(items[i].active == true)
+							if(pollitems[i].active == true)
 								$("input[name='activepoll'][value='true']").get(0).checked = true;
 							else
 								$("input[name='activepoll'][value='false']").get(0).checked = true;
