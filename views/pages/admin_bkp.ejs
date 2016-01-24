@@ -179,7 +179,6 @@
 			}
 			function displayList(items){
 				var type = state.type == 'news' ? '.newslist' : '.polllist';
-				$('.item-count').get(0).innerText = state.type == 'news' ? items.length : pollitems.length;
 				$(type).get(0).innerHTML = '';
 				for(var i=0;i<items.length;i++){
 					var li = document.createElement('li');
@@ -203,6 +202,7 @@
 					  success: function(data) {
 						items = data;
 						generateList();
+						$('.item-count').get(0).innerText = state.type == 'news' ? items.length : pollitems.length;
 					  },
 					  error: function(xhr, status, err) {
 						console.error('/news', status, err.toString());
@@ -217,6 +217,7 @@
 					  success: function(data) {
 						pollitems = data;
 						generatePollList();
+						$('.item-count').get(0).innerText = state.type == 'news' ? items.length : pollitems.length;
 					  },
 					  error: function(xhr, status, err) {
 						console.error('/news', status, err.toString());
