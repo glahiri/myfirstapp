@@ -184,7 +184,7 @@
 					var li = document.createElement('li');
 					var a = document.createElement('a');
 					a.href = "javascript:getItem('"+items[i]._id+"')";
-					a.innerHTML = items[i].header;
+					a.innerHTML = state.type == 'news'  ? items[i].header : items[i].question;
 					li.appendChild(a);
 					if(items[i].active)
 						li.className = 'list-group-item';
@@ -345,6 +345,7 @@
 				$('.preview-details').get(0).innerHTML = '';
 				$('#myform').get(0).reset();
 				state.polloptions = [];
+				setoptions();
 				$('#myformpoll').get(0).reset();
 			}
 			function createNew(){
