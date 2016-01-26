@@ -398,7 +398,7 @@
 				for(var i=0;i<state.polloptions.length;i++){
 					var li = document.createElement('li');
 					li.className = 'list-group-item';
-					li.innerHTML = ". <span style='color:" + state.polloptions[i].color + "'><b>"  + (i+1) + state.polloptions[i].data + "</b></span><div style='float:right;>' <button type='button' class='btn btn-danger btn-xs' onClick='deleteoption(\""+ state.polloptions[i].key +"\")'> <span class='glyphicon glyphicon-trash'></span></button></div>";
+					li.innerHTML = "<span style='color:" + state.polloptions[i].color + "'><b>"  + (i+1) + ". " + state.polloptions[i].data + "</b></span><div style='float:right;>' <button type='button' class='btn btn-danger btn-xs' onClick='deleteoption(\""+ state.polloptions[i].key +"\")'> <span class='glyphicon glyphicon-trash'></span></button></div>";
 					$('.optionlist').get(0).appendChild(li);
 				}				
 			}
